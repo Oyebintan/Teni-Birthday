@@ -28,7 +28,7 @@ function showPage(page) {
 
 // PAGE ONE: LOOPING TYPING ANIMATION
 
-const titleText = "mail";
+const titleText = "a mail!";
 let titleIndex = 0;
 let deleting = false;
 
