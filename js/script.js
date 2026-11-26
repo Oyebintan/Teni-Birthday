@@ -19,10 +19,10 @@ const musicToggle = document.getElementById("musicToggle");
 
 function showPage(page) {
     document.querySelectorAll(".page").forEach(section => {
-        section.classList.remove("active");
+        const isActive = section === page;
+        section.classList.toggle("active", isActive);
+        section.inert = !isActive;
     });
-
-    page.classList.add("active");
 }
 
 
