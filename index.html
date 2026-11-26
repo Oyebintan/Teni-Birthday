@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#F6DDEC">
+
+    <title>For Zion ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Reusable icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-heart" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 0C12.8 7 17 11.2 24 12 17 12.8 12.8 17 12 24 11.2 17 7 12.8 0 12 7 11.2 11.2 7 12 0z"/>
+        </symbol>
+    </defs>
+</svg>
+
+<main id="app">
+
+    <!-- ONE shared background for every page, so colours never jump between pages -->
+    <div class="backdrop" aria-hidden="true">
+        <span class="glow glow-a"></span>
+        <span class="glow glow-b"></span>
+        <span class="glow glow-c"></span>
+        <div class="floaties" id="floaties"></div>
+    </div>
+
+
+    <!-- PAGE 1: YOU'VE GOT MAIL -->
+    <section class="page welcome-page active" id="pageOne" aria-labelledby="welcomeTitle">
+
+        <div class="split-layout welcome-layout">
+
+            <div class="illustration-side reveal-art">
+                <div class="art-glow" aria-hidden="true"></div>
+
+                <svg class="spark s1" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                <svg class="spark s2" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                <svg class="spark s3" aria-hidden="true"><use href="#i-sparkle"/></svg>
+
+                <img
+                    src="assets/images/page-01.svg"
+                    alt="A mailbox with a paper plane flying towards it"
+                    class="welcome-illustration"
+                >
+            </div>
+
+            <div class="text-side welcome-content">
+
+                <p class="eyebrow reveal" style="--d:.05s">A LITTLE SURPRISE FOR YOU</p>
+
+                <h1 id="welcomeTitle" class="reveal" style="--d:.15s">
+                    You've got<br>
+                    <span class="sr-only">mail</span>
+                    <span class="typing-line" aria-hidden="true">
+                        <span id="typingTitle"></span><span class="typing-cursor"></span>
+                    </span>
+                </h1>
+
+                <p class="welcome-description reveal" style="--d:.28s">
+                    Someone special has left something lovely
+                    waiting just for you.
+                </p>
+
+                <div class="reveal" style="--d:.4s">
+                    <button class="primary-btn" id="collectMail" type="button">
+                        Collect your mail
+                        <svg class="btn-heart" aria-hidden="true"><use href="#i-heart"/></svg>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PAGE 2: OPEN YOUR MAIL -->
+    <section class="page envelope-page" id="pageTwo" aria-labelledby="envelopeTitle" inert>
+
+        <div class="split-layout envelope-layout">
+
+            <div class="text-side envelope-content">
+
+                <p class="eyebrow reveal" style="--d:.05s">PERSONAL DELIVERY</p>
+
+                <h2 id="envelopeTitle" class="reveal" style="--d:.15s">A little something<br>just for <span>you.</span></h2>
+
+                <p class="envelope-description reveal" style="--d:.28s">
+                    A little love, carefully wrapped
+                    and sealed just for you.
+                </p>
+
+                <div class="reveal" style="--d:.4s">
+                    <button class="primary-btn" id="openLetter" type="button">
+                        Open your letter
+                        <svg class="btn-heart" aria-hidden="true"><use href="#i-heart"/></svg>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="illustration-side reveal-art">
+                <div class="art-glow" aria-hidden="true"></div>
+
+                <svg class="spark s1" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                <svg class="spark s2" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                <svg class="spark s3" aria-hidden="true"><use href="#i-sparkle"/></svg>
+
+                <div class="envelope-art" id="envelopeArt">
+                    <div class="envelope-float">
+                        <img
+                            src="assets/images/page-02.svg"
+                            alt="A sealed birthday letter"
+                            class="envelope-illustration"
+                        >
+                        <span class="seal" aria-hidden="true">
+                            <svg><use href="#i-heart"/></svg>
+                        </span>
+                    </div>
+                    <span class="envelope-shadow" aria-hidden="true"></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CELEBRATION POPUP -->
+    <div class="celebration-overlay" id="celebration" aria-hidden="true">
+
+        <div class="confetti-container" id="confetti"></div>
+
+        <div class="celebration-popup" role="status">
+
+            <div class="popup-heart"><svg><use href="#i-heart"/></svg></div>
+
+            <p class="eyebrow">BREAKING NEWS</p>
+
+            <h2>It's World<br><span>Giggle Day!</span></h2>
+
+            <p>
+                The world is a little brighter
+                because you were born.
+            </p>
+
+            <div class="popup-sparkle" aria-hidden="true">✦ ✧ ✦</div>
+
+        </div>
+    </div>
+
+
+    <!-- PAGE 3: THE BIRTHDAY LETTER (single, non-scrolling page) -->
+    <section class="page birthday-page" id="pageThree" aria-labelledby="birthdayTitle" inert>
+
+        <!-- Music toggle: icon only, top of the page -->
+        <button
+            class="music-btn"
+            id="musicToggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Turn music on"
+            title="Turn music on"
+        >
+            <span class="music-ring" aria-hidden="true"></span>
+            <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+                <line class="music-slash" x1="3" y1="3" x2="21" y2="21"/>
+            </svg>
+        </button>
+
+        <!-- Decorative balloons (wide screens only) -->
+        <svg class="balloon balloon-left" viewBox="0 0 60 130" aria-hidden="true">
+            <path class="b-string" d="M30 74 C22 90 38 104 30 126" />
+            <path class="b-body" d="M30 4 C48 4 58 18 58 34 C58 52 44 66 30 70 C16 66 2 52 2 34 C2 18 12 4 30 4z"/>
+            <path class="b-knot" d="M30 69 L24 78 H36z"/>
+            <ellipse class="b-shine" cx="19" cy="22" rx="5" ry="9" transform="rotate(25 19 22)"/>
+        </svg>
+        <svg class="balloon balloon-left-2" viewBox="0 0 60 130" aria-hidden="true">
+            <path class="b-string" d="M30 74 C38 90 22 104 30 126" />
+            <path class="b-body" d="M30 4 C48 4 58 18 58 34 C58 52 44 66 30 70 C16 66 2 52 2 34 C2 18 12 4 30 4z"/>
+            <path class="b-knot" d="M30 69 L24 78 H36z"/>
+            <ellipse class="b-shine" cx="19" cy="22" rx="5" ry="9" transform="rotate(25 19 22)"/>
+        </svg>
+        <svg class="balloon balloon-right" viewBox="0 0 60 130" aria-hidden="true">
+            <path class="b-string" d="M30 74 C22 90 38 104 30 126" />
+            <path class="b-body" d="M30 4 C48 4 58 18 58 34 C58 52 44 66 30 70 C16 66 2 52 2 34 C2 18 12 4 30 4z"/>
+            <path class="b-knot" d="M30 69 L24 78 H36z"/>
+            <ellipse class="b-shine" cx="19" cy="22" rx="5" ry="9" transform="rotate(25 19 22)"/>
+        </svg>
+        <svg class="balloon balloon-right-2" viewBox="0 0 60 130" aria-hidden="true">
+            <path class="b-string" d="M30 74 C38 90 22 104 30 126" />
+            <path class="b-body" d="M30 4 C48 4 58 18 58 34 C58 52 44 66 30 70 C16 66 2 52 2 34 C2 18 12 4 30 4z"/>
+            <path class="b-knot" d="M30 69 L24 78 H36z"/>
+            <ellipse class="b-shine" cx="19" cy="22" rx="5" ry="9" transform="rotate(25 19 22)"/>
+        </svg>
+
+        <div class="birthday-content">
+
+            <header class="letter-heading">
+
+                <p class="eyebrow reveal" style="--d:.05s">A PERSONAL MESSAGE FOR YOU</p>
+
+                <h1 id="birthdayTitle" class="birthday-title reveal" style="--d:.15s">
+                    Happy 20th Birthday, <span>Teni!</span> ❤️
+                </h1>
+
+                <p class="birthday-subheading reveal" style="--d:.25s">
+                    Two decades of being wonderfully you.
+                </p>
+
+            </header>
+
+
+            <!-- EMAIL / LETTER -->
+            <article class="letter-card reveal" style="--d:.35s">
+
+                <div class="letter-topbar">
+                    <span class="letter-dot"></span>
+                    <span class="letter-dot"></span>
+                    <span class="letter-dot"></span>
+                    <span class="letter-label">A little love letter</span>
+                </div>
+
+                <div class="letter-meta">
+
+                    <div>
+                        <span class="meta-label">TO:</span>
+                        <strong>My favourite Giggles ♡</strong>
+                    </div>
+
+                    <span class="meta-separator">•</span>
+
+                    <div>
+                        <span class="meta-label">SUBJECT:</span>
+                        <strong>Twenty looks beautiful on you.</strong>
+                    </div>
+
+                </div>
+
+                <div class="letter-divider"></div>
+
+                <div class="letter-body" id="letterBody">
+
+                    <p class="letter-greeting">Hey, Giggles! ❤️</p>
+
+                    <p>
+                        Happy birthday to you! I hope you know just how
+                        special you are and how much joy you bring into
+                        the lives of the people around you.
+                    </p>
+
+                    <p>
+                        Welcome to your twenties! A whole new chapter,
+                        filled with new experiences, beautiful memories,
+                        unexpected blessings and opportunities to become
+                        even more of the amazing person you already are.
+                    </p>
+
+                    <p>
+                        I pray this new age brings you genuine happiness,
+                        peace of mind, good health, answered prayers and
+                        everything your heart has been quietly wishing for.
+                    </p>
+
+                    <p>
+                        May you never run out of reasons to smile, laugh
+                        until your stomach hurts, and find beauty in even
+                        the smallest moments.
+                    </p>
+
+                    <p>
+                        Keep being your beautiful, funny, wonderful self.
+                        Never forget how deserving you are of good things.
+                    </p>
+
+                    <p class="letter-signoff">
+                        Happy 20th birthday once again, my Giggles.
+                        Here's to a beautiful new decade. ❤️
+                    </p>
+
+                    <p class="signature">
+                        With lots of love,<br>
+                        <span>Yours truly ♡</span>
+                    </p>
+
+                </div>
+
+            </article>
+
+            <p class="footer-note reveal" style="--d:.5s">Made with love, just for you. ♡</p>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div class="burst-layer" id="burstLayer" aria-hidden="true"></div>
+
+<audio id="birthdayMusic" src="assets/music/birthday-song.mp3" loop preload="auto"></audio>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
