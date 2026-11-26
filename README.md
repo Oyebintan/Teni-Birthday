@@ -4,7 +4,7 @@ A little corner of the internet created to celebrate someone special.
 
 This is a personal birthday website built as a digital birthday surprise, featuring a playful mail-themed introduction, animated page transitions, a birthday letter, and background music.
 
-## ✨ Features
+## Features
 
 - **Interactive welcome page** – A playful introduction with a mail-themed illustration.
 - **Envelope experience** – An animated transition that leads to the birthday surprise.
@@ -14,7 +14,7 @@ This is a personal birthday website built as a digital birthday surprise, featur
 - **Responsive design** – Adapted for both desktop and mobile screens.
 - **Smooth animations** – Transitions and subtle animations for a more engaging experience.
 
-## 🛠️ Built With
+## Built With
 
 - HTML5
 - CSS3
@@ -22,7 +22,7 @@ This is a personal birthday website built as a digital birthday surprise, featur
 - SVG illustrations
 - Google Fonts
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 Zion-Birthday/
@@ -37,7 +37,7 @@ Zion-Birthday/
         └── birthday-song.mp3
 ```
 
-## 🚀 Live Website
+## Live Website
 
 Experience the birthday surprise here:
 
