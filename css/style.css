@@ -13,7 +13,8 @@
     --dark-wine: #6B1939;
     --cream: #FFF9F5;
     --white: #FFFFFF;
-    --muted: #7E5368;          /* darker than before, readable on pink */
+    --muted: #7E5368;   
+    --soft-label: #7A4D64;      /* unified low-emphasis text: meta labels, footer note, muted icon state */       /* darker than before, readable on pink */
 
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -337,6 +338,9 @@ h2 span {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    --px: 0;
+    --py: 0;
+    animation: illustrationDrift 9s ease-in-out infinite;
 }
 
 .welcome-description,
@@ -382,7 +386,7 @@ h2 span {
     position: relative;
     z-index: 1;
     display: block;
-    width: min(112%, 600px);
+    width: min(100%, 600px);
     max-width: none;
     height: 100%;
     object-fit: contain;
@@ -425,11 +429,45 @@ h2 span {
     width: min(80vw, 380px);
     max-height: 100%;
     translate: 0 5svh;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .envelope-float {
     position: relative;
     animation: envelopeFloat 4.5s ease-in-out infinite;
+    transition: scale .35s var(--ease-spring);
+}
+
+.envelope-art:hover .envelope-float { scale: 1.035; }
+.envelope-art:active .envelope-float { scale: .98; }
+
+.tap-hint {
+    position: absolute;
+    left: 50%;
+    bottom: -46px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    translate: -50% 0;
+    color: var(--wine);
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .4px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: hintBob 2.2s ease-in-out infinite;
+    transition: opacity .3s ease;
+}
+
+.tap-hint svg {
+    width: 14px;
+    height: 14px;
+    animation: heartBeat 1.6s ease-in-out infinite;
+}
+
+.envelope-art.opening .tap-hint {
+    opacity: 0;
 }
 
 .envelope-illustration {
@@ -562,6 +600,17 @@ h2 span {
     margin-top: 16px;
     color: var(--muted);
     line-height: 1.7;
+}
+
+.celebration-overlay { cursor: pointer; }
+
+.celebration-popup .popup-skip {
+    margin-top: 18px;
+    color: var(--soft-label);
+    font-size: .74rem;
+    letter-spacing: .5px;
+    opacity: 0;
+    animation: fadeIn .8s ease 1.3s forwards;
 }
 
 .popup-sparkle {
@@ -731,7 +780,30 @@ h2 span {
 
 /* ---- the letter card ---- */
 
+/* the letter looks pulled up out of the envelope, not just faded in */
+.letter-card.reveal {
+    translate: 0 70px;
+    scale: .95;
+    rotate: -1.4deg;
+    transform-origin: 50% 100%;
+    clip-path: inset(-20px -60px 100% -60px round 20px);
+}
+
+.page.active .letter-card.reveal {
+    translate: 0 0;
+    scale: 1;
+    rotate: 0deg;
+    clip-path: inset(-20px -60px -90px -60px round 20px);
+    transition:
+        opacity .6s ease calc(.45s + var(--d, 0s)),
+        translate 1.3s var(--ease-out) calc(.45s + var(--d, 0s)),
+        scale 1.3s var(--ease-out) calc(.45s + var(--d, 0s)),
+        rotate 1.3s var(--ease-out) calc(.45s + var(--d, 0s)),
+        clip-path 1.2s var(--ease-out) calc(.45s + var(--d, 0s));
+}
+
 .letter-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 0 1 auto;
@@ -937,6 +1009,143 @@ h2 span {
 .balloon-right    { width: 62px; right: 7%; bottom: 22%; animation-delay: -1s; }
 .balloon-right-2  { width: 48px; right: 13%; bottom: 48%; animation-delay: -3.5s; }
 
+/* ---- postage stamp ---- */
+
+.stamp {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    z-index: 3;
+    width: 44px;
+    padding: 3px;
+    border: 1.5px dashed #E3B3C8;
+    border-radius: 3px;
+    background: #FFF6FA;
+    box-shadow: 0 4px 10px rgba(107, 25, 57, .16);
+    rotate: 5deg;
+    pointer-events: none;
+}
+
+.stamp-inner {
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    padding: 7px 0 4px;
+    border-radius: 2px;
+    background: linear-gradient(160deg, #FF7FB4, var(--hot) 55%, #B30A4F);
+    color: #fff;
+}
+
+.stamp-inner svg {
+    width: 17px;
+    height: 17px;
+    color: #FFE3EF;
+}
+
+.stamp-inner span {
+    font-family: var(--font-display);
+    font-size: .74rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ---- scroll hint (chevron, shown only while there's more to read) ---- */
+
+.scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--wine);
+    box-shadow: 0 6px 16px rgba(107, 25, 57, .22);
+    opacity: 0;
+    pointer-events: none;
+    translate: -50% 6px;
+    transition: opacity .35s ease, translate .35s ease;
+}
+
+.scroll-hint svg {
+    width: 18px;
+    height: 18px;
+}
+
+.letter-body.has-more ~ .scroll-hint {
+    opacity: 1;
+    pointer-events: auto;
+    translate: -50% 0;
+    animation: chevBob 1.7s ease-in-out infinite;
+}
+
+/* ---- music tip bubble ---- */
+
+.music-tip {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 22px);
+    right: 74px;
+    z-index: 6;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #fff;
+    color: var(--dark-wine);
+    font-size: .78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(107, 25, 57, .16);
+    opacity: 0;
+    translate: 10px 0;
+    pointer-events: none;
+    transition: opacity .5s ease, translate .5s var(--ease-out);
+}
+
+.music-tip.show {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* signature shimmer once she reaches the end of the letter */
+.letter-body .signature.finished span {
+    animation: sigGlow 2.4s ease-in-out infinite;
+}
+
+/* ---- floating cake (overlays every page, small and out of the way) ---- */
+
+.floating-cake {
+    position: fixed;
+    left: max(14px, env(safe-area-inset-left));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    z-index: 25;
+    cursor: pointer;
+    filter: drop-shadow(0 10px 16px rgba(107, 25, 57, .25));
+    animation: cakeFloat 4.5s ease-in-out infinite;
+    transition: transform .3s var(--ease-spring);
+}
+
+.floating-cake:hover,
+.floating-cake:focus-visible {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.floating-cake svg {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+
+.cake-flame {
+    transform-box: fill-box;
+    transform-origin: 50% 85%;
+    animation: flameFlicker 1.1s ease-in-out infinite;
+}
+
+@media (min-width: 480px) {
+    .floating-cake svg { width: 56px; height: 56px; }
+}
 
 /* =========================================================
    BURST HEARTS (click effect)
@@ -1113,6 +1322,23 @@ h2 span {
         height: 50px;
     }
 
+    .music-tip {
+        top: 34px;
+        right: 92px;
+    }
+
+    .stamp {
+        top: 14px;
+        right: 28px;
+        width: 50px;
+    }
+
+    .letter-meta { padding-right: 90px; }
+    .letter-label { margin-right: 78px; }
+
+    .floating-cake { left: 24px; bottom: 24px; }
+    .floating-cake svg { width: 64px; height: 64px; }
+
     .balloon { display: block; }
 }
 
@@ -1269,9 +1495,14 @@ h2 span {
         height: 42px;
     }
 
-    .balloon {
+    .balloon,
+    .stamp {
         display: none;
     }
+
+    .letter-meta { padding-right: 16px; }
+
+    .floating-cake { display: none; }
 }
 
 /* small phones */
@@ -1284,6 +1515,44 @@ h2 span {
 /* =========================================================
    KEYFRAMES
    ========================================================= */
+
+@keyframes illustrationDrift {
+    0%, 100% {
+        transform: translate3d(calc(var(--px, 0) * 14px), calc(var(--py, 0) * 10px), 0) rotate(calc(var(--px, 0) * .6deg));
+    }
+    50% {
+        transform: translate3d(calc(var(--px, 0) * 14px + 6px), calc(var(--py, 0) * 10px - 9px), 0) rotate(calc(var(--px, 0) * .6deg + .5deg));
+    }
+}
+
+@keyframes hintBob {
+    0%, 100% { transform: translateY(0); opacity: .75; }
+    50%      { transform: translateY(5px); opacity: 1; }
+}
+
+@keyframes chevBob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
+}
+
+@keyframes sigGlow {
+    0%, 100% { text-shadow: 0 0 0 rgba(245, 17, 108, 0); }
+    50%      { text-shadow: 0 0 14px rgba(245, 17, 108, .55); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes cakeFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes flameFlicker {
+    0%, 100% { transform: scale(1, 1); }
+    50%      { transform: scale(.85, 1.15); }
+}   
 
 @keyframes drift {
     from { transform: translate(0, 0) scale(1); }
