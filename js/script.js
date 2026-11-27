@@ -24,7 +24,6 @@
     const floaties = $("floaties");
 
     const birthdayMusic = $("birthdayMusic");
-    const ambientSound = $("ambientSound");
     const musicToggle = $("musicToggle");
     const musicTip = $("musicTip");
 
@@ -242,17 +241,12 @@
 
     /* =========================================================
        MUSIC
-       - A very soft ambient track (one of the extra songs already in
-         assets/music) plays quietly on pages 1-2, so it never feels
-         silent. It starts as soon as possible; if the browser blocks
-         autoplay, it starts on the first tap/key anywhere.
-       - Opening the letter fades the ambient track out and fades the
-         birthday song in, both starting low ("not loud").
-       - The music button on page 3 only ever controls the birthday song.
+       - The birthday song only starts once the letter is opened,
+         fading in low ("not loud").
+       - The music button on page 3 controls the birthday song.
        ========================================================= */
 
-    const AMBIENT_VOLUME = 0.14;
-    const MUSIC_VOLUME = 0.42;
+    const MUSIC_VOLUME = 0.15;
 
     let musicOn = false;
 
@@ -284,27 +278,6 @@
             fade(audio, volume, fadeMs);
             return true;
         }).catch(() => false);
-    }
-
-    // soft ambient hum, starting as soon as the page allows it
-    if (ambientSound) {
-        tryPlay(ambientSound, AMBIENT_VOLUME, 2200).then((ok) => {
-            if (ok || reducedMotion) return;
-
-            const unlock = () => {
-                tryPlay(ambientSound, AMBIENT_VOLUME, 1200);
-                window.removeEventListener("pointerdown", unlock);
-                window.removeEventListener("keydown", unlock);
-            };
-
-            window.addEventListener("pointerdown", unlock, { once: true });
-            window.addEventListener("keydown", unlock, { once: true });
-        });
-    }
-
-    function stopAmbient() {
-        if (!ambientSound || ambientSound.paused) return;
-        fade(ambientSound, 0, 500, () => ambientSound.pause());
     }
 
     function renderMusicButton() {
@@ -385,7 +358,6 @@
         if (celebrationStarted) return;
         celebrationStarted = true;
 
-        stopAmbient();
         setMusic(true);
 
         burstHearts(origin, 20);
@@ -400,7 +372,6 @@
         }, 850);
 
         later(() => { celebrationSkippable = true; }, 850 + 700);
-        later(finishCelebration, 850 + 3800);
     }
 
     openLetter.addEventListener("click", () => openTheLetter(openLetter));

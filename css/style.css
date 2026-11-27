@@ -606,7 +606,7 @@ h2 span {
 
 .celebration-popup .popup-skip {
     margin-top: 18px;
-    color: var(--soft-label);
+    color: #E0183C;
     font-size: .74rem;
     letter-spacing: .5px;
     opacity: 0;
@@ -617,7 +617,11 @@ h2 span {
     margin-top: 20px;
     color: var(--wine);
     letter-spacing: 10px;
-    animation: twinkle 2s ease-in-out infinite;
+    opacity: 0;
+    transform: translateY(8px);
+    animation:
+        popupSparkleIn .5s ease .3s forwards,
+        twinkle 2s ease-in-out infinite .8s;
 }
 
 .confetti-container {
@@ -1656,6 +1660,12 @@ h2 span {
     0%, 100% { transform: translateY(0) rotate(-2.5deg); }
     50%      { transform: translateY(-16px) rotate(2.5deg); }
 }
+@keyframes popupSparkleIn {
+    to {
+        opacity: .85;
+        transform: translateY(0);
+    }
+}
 
 
 /* =========================================================
@@ -1674,4 +1684,36 @@ h2 span {
     }
 
     .floaties { display: none; }
+}
+
+
+/* =========================================================
+   PAGE 1 — paper planes flying in & out
+   ========================================================= */
+
+.plane {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.plane-a {
+    animation: planeAFly 6s ease-in-out infinite;
+}
+
+@keyframes planeAFly {
+    0%   { transform: translate(0, 0) rotate(0deg);         opacity: 1; }
+    45%  { transform: translate(55px, -35px) rotate(-8deg); opacity: 1; }
+    50%  { opacity: 0; }
+    51%  { transform: translate(-70px, 25px) rotate(6deg);  opacity: 0; }
+    56%  { opacity: 1; }
+    100% { transform: translate(0, 0) rotate(0deg);         opacity: 1; }
+}
+
+#flightPath {
+    animation: flightTrailFade 9s ease-in-out infinite;
+}
+
+@keyframes flightTrailFade {
+    0%, 100% { opacity: .55; }
+    50%      { opacity: .1; }
 }
