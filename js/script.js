@@ -257,7 +257,7 @@
         const start = performance.now();
 
         function step(now) {
-            const t = Math.min((now - start) / ms, 1);
+            const t = Math.max(0, Math.min((now - start) / ms, 1));
             audio.volume = from + (target - from) * t;
 
             if (t < 1) {
