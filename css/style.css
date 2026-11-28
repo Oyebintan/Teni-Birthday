@@ -1687,56 +1687,7 @@ h2 span {
 }
 
 
-/* =========================================================
-   PAGE 1 — one paper plane: fades in at the mailbox,
-   wanders up past the illustration, drifts back and fades out
-   ========================================================= */
 
-.flying-plane {
-    position: absolute;
-    left: 58.9%;
-    top: 62.3%;
-    width: 72px;
-    height: auto;
-    z-index: 6;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(-50%, -50%) scaleX(-1);
-    animation: planeRoam 18s ease-in-out infinite;
-    animation-delay: .6s;
-}
-
-@keyframes planeRoam {
-    0%   { left: 58.9%; top: 62.3%; opacity: 0; }
-    8%   { opacity: 1; }
-    26%  { left: 74%;   top: 40%; }
-    44%  { left: 52%;   top: 15%; }
-    60%  { left: 28%;   top: 30%; }
-    78%  { left: 46%;   top: 50%; }
-    92%  { left: 58.9%; top: 62.3%; opacity: 1; }
-    97%  { opacity: 0; }
-    100% { left: 58.9%; top: 62.3%; opacity: 0; }
-}
-
-@media (min-width: 860px) {
-    .flying-plane {
-        left: 32.4%;
-        top: 39%;
-        width: 92px;
-    }
-
-    @keyframes planeRoam {
-        0%   { left: 32.4%; top: 39%; opacity: 0; }
-        8%   { opacity: 1; }
-        26%  { left: 50%;   top: 58%; }
-        44%  { left: 74%;   top: 32%; }
-        60%  { left: 60%;   top: 50%; }
-        78%  { left: 44%;   top: 62%; }
-        92%  { left: 32.4%; top: 39%; opacity: 1; }
-        97%  { opacity: 0; }
-        100% { left: 32.4%; top: 39%; opacity: 0; }
-    }
-}
 
 
 /* =========================================================
